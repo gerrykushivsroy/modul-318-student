@@ -31,20 +31,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchConnection = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.cboStartStation = new System.Windows.Forms.ComboBox();
-            this.cboEndStation = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.dataGridConnection = new System.Windows.Forms.DataGridView();
+            this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtStartStation = new System.Windows.Forms.TextBox();
+            this.lstStartDestinations = new System.Windows.Forms.ListBox();
+            this.txtEndStation = new System.Windows.Forms.TextBox();
+            this.lstEndDestinations = new System.Windows.Forms.ListBox();
+            this.btnShowConnectionFromStart = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 32);
+            this.label1.Location = new System.Drawing.Point(18, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 28);
             this.label1.TabIndex = 1;
@@ -54,106 +57,130 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(437, 30);
+            this.label2.Location = new System.Drawing.Point(316, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 4;
             this.label2.Text = "&Nach:";
             // 
             // btnSearchConnection
             // 
             this.btnSearchConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchConnection.Location = new System.Drawing.Point(589, 92);
+            this.btnSearchConnection.Location = new System.Drawing.Point(462, 145);
             this.btnSearchConnection.Name = "btnSearchConnection";
             this.btnSearchConnection.Size = new System.Drawing.Size(138, 55);
-            this.btnSearchConnection.TabIndex = 5;
+            this.btnSearchConnection.TabIndex = 6;
             this.btnSearchConnection.Text = "Verbindung suchen";
             this.btnSearchConnection.UseVisualStyleBackColor = true;
             this.btnSearchConnection.Click += new System.EventHandler(this.btnSearchConnection_Click);
             // 
-            // listBox1
+            // dataGridConnection
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(37, 181);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(690, 407);
-            this.listBox1.TabIndex = 6;
+            this.dataGridConnection.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.dataGridConnection.AllowUserToAddRows = false;
+            this.dataGridConnection.AllowUserToDeleteRows = false;
+            this.dataGridConnection.AllowUserToResizeColumns = false;
+            this.dataGridConnection.AllowUserToResizeRows = false;
+            this.dataGridConnection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridConnection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridConnection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Departure,
+            this.From,
+            this.To,
+            this.Duration});
+            this.dataGridConnection.Location = new System.Drawing.Point(22, 238);
+            this.dataGridConnection.Name = "dataGridConnection";
+            this.dataGridConnection.RowHeadersVisible = false;
+            this.dataGridConnection.Size = new System.Drawing.Size(578, 307);
+            this.dataGridConnection.TabIndex = 6;
             // 
-            // cboStartStation
+            // Departure
             // 
-            this.cboStartStation.FormattingEnabled = true;
-            this.cboStartStation.Location = new System.Drawing.Point(37, 53);
-            this.cboStartStation.Name = "cboStartStation";
-            this.cboStartStation.Size = new System.Drawing.Size(286, 21);
-            this.cboStartStation.TabIndex = 2;
-            this.cboStartStation.Click += new System.EventHandler(this.cboStartStation_Click);
+            this.Departure.HeaderText = "Departure";
+            this.Departure.Name = "Departure";
             // 
-            // cboEndStation
+            // From
             // 
-            this.cboEndStation.FormattingEnabled = true;
-            this.cboEndStation.Location = new System.Drawing.Point(441, 53);
-            this.cboEndStation.Name = "cboEndStation";
-            this.cboEndStation.Size = new System.Drawing.Size(286, 21);
-            this.cboEndStation.TabIndex = 4;
-            this.cboEndStation.Click += new System.EventHandler(this.cboEndDestination_Click);
+            this.From.HeaderText = "From";
+            this.From.Name = "From";
             // 
-            // label4
+            // To
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(351, 162);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 16);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Fahrtdauer:";
+            this.To.HeaderText = "To";
+            this.To.Name = "To";
             // 
-            // label5
+            // Duration
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(586, 162);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 16);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Gleisnummer:";
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Name = "Duration";
             // 
-            // label6
+            // txtStartStation
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(34, 162);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 16);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Abfahrtszeit:";
+            this.txtStartStation.Location = new System.Drawing.Point(22, 61);
+            this.txtStartStation.Name = "txtStartStation";
+            this.txtStartStation.Size = new System.Drawing.Size(175, 20);
+            this.txtStartStation.TabIndex = 2;
+            this.txtStartStation.TextChanged += new System.EventHandler(this.txtStartStation_TextChanged);
+            this.txtStartStation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStartStation_KeyDown);
+            this.txtStartStation.Leave += new System.EventHandler(this.txtStartStation_Leave);
             // 
-            // pictureBox1
+            // lstStartDestinations
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(344, 32);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(70, 62);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.lstStartDestinations.FormattingEnabled = true;
+            this.lstStartDestinations.Location = new System.Drawing.Point(22, 79);
+            this.lstStartDestinations.Name = "lstStartDestinations";
+            this.lstStartDestinations.Size = new System.Drawing.Size(175, 95);
+            this.lstStartDestinations.TabIndex = 8;
+            this.lstStartDestinations.Visible = false;
+            this.lstStartDestinations.Enter += new System.EventHandler(this.lstDestinations_Enter);
+            // 
+            // txtEndStation
+            // 
+            this.txtEndStation.Location = new System.Drawing.Point(320, 61);
+            this.txtEndStation.Name = "txtEndStation";
+            this.txtEndStation.Size = new System.Drawing.Size(175, 20);
+            this.txtEndStation.TabIndex = 5;
+            this.txtEndStation.TextChanged += new System.EventHandler(this.txtEndStation_TextChanged);
+            this.txtEndStation.Leave += new System.EventHandler(this.txtEndStation_Leave);
+            // 
+            // lstEndDestinations
+            // 
+            this.lstEndDestinations.FormattingEnabled = true;
+            this.lstEndDestinations.Location = new System.Drawing.Point(320, 79);
+            this.lstEndDestinations.Name = "lstEndDestinations";
+            this.lstEndDestinations.Size = new System.Drawing.Size(175, 95);
+            this.lstEndDestinations.TabIndex = 10;
+            this.lstEndDestinations.Visible = false;
+            this.lstEndDestinations.Enter += new System.EventHandler(this.lstEndDestinations_Enter);
+            // 
+            // btnShowConnectionFromStart
+            // 
+            this.btnShowConnectionFromStart.Location = new System.Drawing.Point(203, 61);
+            this.btnShowConnectionFromStart.Name = "btnShowConnectionFromStart";
+            this.btnShowConnectionFromStart.Size = new System.Drawing.Size(81, 37);
+            this.btnShowConnectionFromStart.TabIndex = 3;
+            this.btnShowConnectionFromStart.Text = "Verbindung anzeigen";
+            this.btnShowConnectionFromStart.UseVisualStyleBackColor = true;
+            this.btnShowConnectionFromStart.Click += new System.EventHandler(this.btnShowConnectionFromStart_Click);
             // 
             // ÖV_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 600);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cboEndStation);
-            this.Controls.Add(this.cboStartStation);
-            this.Controls.Add(this.listBox1);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(648, 600);
+            this.Controls.Add(this.btnShowConnectionFromStart);
+            this.Controls.Add(this.lstEndDestinations);
+            this.Controls.Add(this.txtEndStation);
+            this.Controls.Add(this.lstStartDestinations);
+            this.Controls.Add(this.txtStartStation);
+            this.Controls.Add(this.dataGridConnection);
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ÖV_App";
             this.Text = "ÖV App V2";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,13 +191,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearchConnection;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox cboStartStation;
-        private System.Windows.Forms.ComboBox cboEndStation;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dataGridConnection;
+        private System.Windows.Forms.TextBox txtStartStation;
+        private System.Windows.Forms.ListBox lstStartDestinations;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Departure;
+        private System.Windows.Forms.DataGridViewTextBoxColumn From;
+        private System.Windows.Forms.DataGridViewTextBoxColumn To;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
+        private System.Windows.Forms.TextBox txtEndStation;
+        private System.Windows.Forms.ListBox lstEndDestinations;
+        private System.Windows.Forms.Button btnShowConnectionFromStart;
     }
 }
 
