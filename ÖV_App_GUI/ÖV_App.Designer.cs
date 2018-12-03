@@ -33,6 +33,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchConnection = new System.Windows.Forms.Button();
             this.dataGridConnection = new System.Windows.Forms.DataGridView();
+            this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gleisnummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtStartStation = new System.Windows.Forms.TextBox();
             this.lstStartDestinations = new System.Windows.Forms.ListBox();
             this.txtEndStation = new System.Windows.Forms.TextBox();
@@ -41,11 +46,6 @@
             this.btnShowConnectionFromStart = new System.Windows.Forms.Button();
             this.btnShowConnectionFromEndStation = new System.Windows.Forms.Button();
             this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
-            this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gleisnummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,6 +103,36 @@
             this.dataGridConnection.RowHeadersVisible = false;
             this.dataGridConnection.Size = new System.Drawing.Size(578, 307);
             this.dataGridConnection.TabIndex = 10;
+            // 
+            // Departure
+            // 
+            this.Departure.HeaderText = "Abfahrtszeit:";
+            this.Departure.Name = "Departure";
+            this.Departure.ReadOnly = true;
+            // 
+            // From
+            // 
+            this.From.HeaderText = "Von:";
+            this.From.Name = "From";
+            this.From.ReadOnly = true;
+            // 
+            // To
+            // 
+            this.To.HeaderText = "Nach:";
+            this.To.Name = "To";
+            this.To.ReadOnly = true;
+            // 
+            // Gleisnummer
+            // 
+            this.Gleisnummer.HeaderText = "Gleisnummer:";
+            this.Gleisnummer.Name = "Gleisnummer";
+            this.Gleisnummer.ReadOnly = true;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Fahrtdauer:";
+            this.Duration.Name = "Duration";
+            this.Duration.ReadOnly = true;
             // 
             // txtStartStation
             // 
@@ -188,36 +218,6 @@
             this.dateTimeDeparture.TabIndex = 7;
             this.dateTimeDeparture.Value = new System.DateTime(2018, 12, 3, 14, 43, 22, 0);
             // 
-            // Departure
-            // 
-            this.Departure.HeaderText = "Abfahrtszeit:";
-            this.Departure.Name = "Departure";
-            this.Departure.ReadOnly = true;
-            // 
-            // From
-            // 
-            this.From.HeaderText = "Von:";
-            this.From.Name = "From";
-            this.From.ReadOnly = true;
-            // 
-            // To
-            // 
-            this.To.HeaderText = "Nach:";
-            this.To.Name = "To";
-            this.To.ReadOnly = true;
-            // 
-            // Gleisnummer
-            // 
-            this.Gleisnummer.HeaderText = "Gleisnummer:";
-            this.Gleisnummer.Name = "Gleisnummer";
-            this.Gleisnummer.ReadOnly = true;
-            // 
-            // Duration
-            // 
-            this.Duration.HeaderText = "Fahrtdauer:";
-            this.Duration.Name = "Duration";
-            this.Duration.ReadOnly = true;
-            // 
             // ÖV_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +238,7 @@
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ÖV_App";
             this.Text = "ÖV App ";

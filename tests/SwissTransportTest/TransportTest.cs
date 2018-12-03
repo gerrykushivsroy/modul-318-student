@@ -34,14 +34,53 @@ namespace SwissTransport
             Assert.IsNotNull(connections);
         }
 
-        //Unit Test der prüft ob 
+        /// <summary>
+        /// Test der prüft das stationBoard nicht Null sein darf. 
+        /// </summary>
+        [TestMethod]
+        public void StationBoardTest()
+        {
+            testee = new Transport();
+            var stationBoard = testee.GetStationBoard("Ballwil", "8502023", "15:03");
+
+            Assert.IsNotNull(stationBoard);
+        }
+        [TestMethod]
+        public void StationBoardTest2()
+        {
+            testee = new Transport();
+            var stationBoard = testee.GetStationBoard("OPAODAOSD", "2032032323", "15:00");
+
+            Assert.Fail();
+        }
+
+        /// <summary>
+        /// Test der überprüft das resultConnections nicht NULL sein darf.
+        /// </summary>
         [TestMethod]
         public void ConnectionTest()
         {
+            //Arrange
             testee = new Transport();
+            //Act
             var resultcConnections = testee.GetConnections("Ballwil", "Emmenbrücke, Gersag", "04:20");
-
+            //Assert
             Assert.IsNotNull(resultcConnections);
         }
+
+        /// <summary>
+        /// Test der überprüft das resultConnections fehlgeschlagen hat. 
+        /// </summary>
+        [TestMethod]
+        public void ConnectionTest2()
+        {
+            //Arrange
+            testee = new Transport();
+            //Act
+            var resultConnections = testee.GetConnections("Emmenbrücke", "232323131", "13:20");
+            //Assert
+            //Assert.;
+        }
+
     }
 }

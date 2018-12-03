@@ -15,7 +15,6 @@ namespace ÖV_App_GUI
     {
         Transport transport = new Transport();
 
-
         public ÖV_App()
         {
             InitializeComponent();
