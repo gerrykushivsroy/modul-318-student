@@ -208,7 +208,7 @@
             // 
             // Gleisnummer
             // 
-            this.Gleisnummer.HeaderText = "Gleisnummer";
+            this.Gleisnummer.HeaderText = "Gleisnummer:";
             this.Gleisnummer.Name = "Gleisnummer";
             this.Gleisnummer.ReadOnly = true;
             // 

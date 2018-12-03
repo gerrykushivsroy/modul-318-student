@@ -27,8 +27,6 @@ namespace ÖV_App_GUI
             List<Connection> railwayConnection = new List<Connection>();
             
 
-
-
             if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
             {
                 dataGridConnection.Rows.Clear();
@@ -37,10 +35,10 @@ namespace ÖV_App_GUI
             {
                 string time = dateTimeDeparture.Value.ToString("HH:mm");
                 railwayConnection = transport.GetConnections(txtStartStation.Text, txtEndStation.Text, time).ConnectionList;
-                foreach (Connection connection in railwayConnection )
+                foreach (Connection connection in railwayConnection)
                 {
                     string duration = connection.Duration.Substring(6, 2);
-                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes");
+                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, connection.To.Platform, duration + " Minuten");
                 }
             }
         }
