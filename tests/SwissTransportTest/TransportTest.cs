@@ -39,7 +39,7 @@ namespace SwissTransport
         public void ConnectionTest()
         {
             testee = new Transport();
-            var resultcConnections = testee.GetConnections("Ballwil", "Emmenbrücke, Gersag", "18:00")
+            var resultcConnections = testee.GetConnections("Ballwil", "Emmenbrücke, Gersag", "04:20");
 
             Assert.IsNotNull(resultcConnections);
         }

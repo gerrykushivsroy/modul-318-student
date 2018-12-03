@@ -20,7 +20,7 @@ namespace SwissTransport
         [JsonProperty("duration")]
         public string Duration { get; set; }
     }
-
+    
     public class ConnectionPoint
     {
         [JsonProperty("station")]

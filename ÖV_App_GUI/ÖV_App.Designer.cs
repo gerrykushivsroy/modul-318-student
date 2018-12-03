@@ -33,10 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchConnection = new System.Windows.Forms.Button();
             this.dataGridConnection = new System.Windows.Forms.DataGridView();
-            this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtStartStation = new System.Windows.Forms.TextBox();
             this.lstStartDestinations = new System.Windows.Forms.ListBox();
             this.txtEndStation = new System.Windows.Forms.TextBox();
@@ -45,12 +41,17 @@
             this.btnShowConnectionFromStart = new System.Windows.Forms.Button();
             this.btnShowConnectionFromEndStation = new System.Windows.Forms.Button();
             this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
+            this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gleisnummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(19, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 28);
@@ -60,10 +61,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(331, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.Size = new System.Drawing.Size(43, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "&Nach:";
             // 
@@ -94,32 +95,14 @@
             this.Departure,
             this.From,
             this.To,
+            this.Gleisnummer,
             this.Duration});
             this.dataGridConnection.Location = new System.Drawing.Point(22, 156);
             this.dataGridConnection.Name = "dataGridConnection";
+            this.dataGridConnection.ReadOnly = true;
             this.dataGridConnection.RowHeadersVisible = false;
             this.dataGridConnection.Size = new System.Drawing.Size(578, 307);
             this.dataGridConnection.TabIndex = 10;
-            // 
-            // Departure
-            // 
-            this.Departure.HeaderText = "Departure";
-            this.Departure.Name = "Departure";
-            // 
-            // From
-            // 
-            this.From.HeaderText = "From";
-            this.From.Name = "From";
-            // 
-            // To
-            // 
-            this.To.HeaderText = "To";
-            this.To.Name = "To";
-            // 
-            // Duration
-            // 
-            this.Duration.HeaderText = "Duration";
-            this.Duration.Name = "Duration";
             // 
             // txtStartStation
             // 
@@ -139,6 +122,7 @@
             this.lstStartDestinations.Size = new System.Drawing.Size(175, 95);
             this.lstStartDestinations.TabIndex = 11;
             this.lstStartDestinations.Visible = false;
+            this.lstStartDestinations.Click += new System.EventHandler(this.lstStartDestinations_Click);
             this.lstStartDestinations.Enter += new System.EventHandler(this.lstDestinations_Enter);
             // 
             // txtEndStation
@@ -204,6 +188,36 @@
             this.dateTimeDeparture.TabIndex = 7;
             this.dateTimeDeparture.Value = new System.DateTime(2018, 12, 3, 14, 43, 22, 0);
             // 
+            // Departure
+            // 
+            this.Departure.HeaderText = "Abfahrtszeit:";
+            this.Departure.Name = "Departure";
+            this.Departure.ReadOnly = true;
+            // 
+            // From
+            // 
+            this.From.HeaderText = "Von:";
+            this.From.Name = "From";
+            this.From.ReadOnly = true;
+            // 
+            // To
+            // 
+            this.To.HeaderText = "Nach:";
+            this.To.Name = "To";
+            this.To.ReadOnly = true;
+            // 
+            // Gleisnummer
+            // 
+            this.Gleisnummer.HeaderText = "Gleisnummer";
+            this.Gleisnummer.Name = "Gleisnummer";
+            this.Gleisnummer.ReadOnly = true;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Fahrtdauer:";
+            this.Duration.Name = "Duration";
+            this.Duration.ReadOnly = true;
+            // 
             // ÖV_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,16 +255,17 @@
         private System.Windows.Forms.DataGridView dataGridConnection;
         private System.Windows.Forms.TextBox txtStartStation;
         private System.Windows.Forms.ListBox lstStartDestinations;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Departure;
-        private System.Windows.Forms.DataGridViewTextBoxColumn From;
-        private System.Windows.Forms.DataGridViewTextBoxColumn To;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
         private System.Windows.Forms.TextBox txtEndStation;
         private System.Windows.Forms.ListBox lstEndDestinations;
         private System.Windows.Forms.Button btnShowConnectionFromStart;
         private System.Windows.Forms.Button btnSwitchStation;
         private System.Windows.Forms.Button btnShowConnectionFromEndStation;
         private System.Windows.Forms.DateTimePicker dateTimeDeparture;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Departure;
+        private System.Windows.Forms.DataGridViewTextBoxColumn From;
+        private System.Windows.Forms.DataGridViewTextBoxColumn To;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gleisnummer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
     }
 }
 

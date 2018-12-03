@@ -25,6 +25,9 @@ namespace ÖV_App_GUI
         {
             List<StationBoard> stationConnection = new List<StationBoard>();
             List<Connection> railwayConnection = new List<Connection>();
+            
+
+
 
             if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
             {
@@ -34,7 +37,7 @@ namespace ÖV_App_GUI
             {
                 string time = dateTimeDeparture.Value.ToString("HH:mm");
                 railwayConnection = transport.GetConnections(txtStartStation.Text, txtEndStation.Text, time).ConnectionList;
-                foreach (Connection connection in railwayConnection)
+                foreach (Connection connection in railwayConnection )
                 {
                     string duration = connection.Duration.Substring(6, 2);
                     dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes");
@@ -134,7 +137,7 @@ namespace ÖV_App_GUI
             }
             else
             {
-                lstStartDestinations.Visible = false;
+                  lstStartDestinations.Visible = false;
             }
             txtStartStation.Focus();
         }
@@ -265,6 +268,11 @@ namespace ÖV_App_GUI
                 txtEndStation.Text = startStation;
                 btnSearchConnection.Focus();
             }
+        }
+
+        private void lstStartDestinations_Click(object sender, EventArgs e)
+        {
+            txtStartStation.Text = lstStartDestinations.Text;
         }
     }
 
