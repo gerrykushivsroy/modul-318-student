@@ -14,7 +14,7 @@ namespace ÖV_App_GUI
     public partial class ÖV_App : Form
     {
         Transport transport = new Transport();
-        StationBoardRoot stationBoard = new StationBoardRoot();
+
 
         public ÖV_App()
         {
@@ -25,24 +25,38 @@ namespace ÖV_App_GUI
         {
             List<StationBoard> stationConnection = new List<StationBoard>();
             List<Connection> railwayConnection = new List<Connection>();
-            dataGridConnection.Rows.Clear();
 
+            if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
+            {
+                dataGridConnection.Rows.Clear();
+            }
             if (!string.IsNullOrEmpty(txtStartStation.Text) && !string.IsNullOrEmpty(txtEndStation.Text))
             {
-                railwayConnection = transport.GetConnections(txtStartStation.Text, txtEndStation.Text).ConnectionList;
+                string time = dateTimeDeparture.Value.ToString("HH:mm");
+                railwayConnection = transport.GetConnections(txtStartStation.Text, txtEndStation.Text, time).ConnectionList;
                 foreach (Connection connection in railwayConnection)
                 {
                     string duration = connection.Duration.Substring(6, 2);
-                    dataGridConnection.Rows.Add(connection.From.Departure, connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes");
+                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes");
                 }
             }
         }
 
         private void btnShowConnectionFromStart_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEndStation.Text))
+            string time = dateTimeDeparture.Value.ToString("HH:mm");
+            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
+            if (txtStartStation.Text == "")
             {
-                List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString());
+                MessageBox.Show("Es wurde kein Abfahrtsort gewählt!");
+                txtStartStation.Focus();
+            }
+            else
+            {
+                if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
+                {
+                    dataGridConnection.Rows.Clear();
+                }
                 foreach (StationBoard station in stationBoardEntries)
                 {
                     string departureStation = txtStartStation.Text;
@@ -50,22 +64,44 @@ namespace ÖV_App_GUI
                 }
             }
         }
+        private void btnShowConnectionFromEndStation_Click(object sender, EventArgs e)
+        {
+            string time = dateTimeDeparture.Value.ToString("HH:mm");
+            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstEndDestinations.SelectedValue.ToString(), time);
+            if (txtEndStation.Text == "")
+            {
+                MessageBox.Show("Es wurde kein Abfahrtsort gewählt!");
+                txtEndStation.Focus();
+            }
+            else
+            {
+                if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
+                {
+                    dataGridConnection.Rows.Clear();
+                }
+                foreach (StationBoard station in stationBoardEntries)
+                {
+                    string departureStation = txtEndStation.Text;
+                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To);
 
-        private List<StationBoard> GetStationBoardEntries(string station, string id)
+                }
+            }
+        }
+        private List<StationBoard> GetStationBoardEntries(string station, string id, string datetime)
         {
             bool stationAndIdNotNullOrWhiteSpaces =
                 (string.IsNullOrWhiteSpace(station) && string.IsNullOrWhiteSpace(id));
 
             if (!stationAndIdNotNullOrWhiteSpaces)
             {
-                stationBoard = transport.GetStationBoard(station, id);
+                return transport.GetStationBoard(station, id, datetime).Entries;
             }
-
-            return stationBoard.Entries;
+            return null;
         }
-        private void ShowStationBoardEntries(string stationName, string stationId)
+
+        private void ShowStationBoardEntries(string stationName, string stationId, string datetime)
         {
-            List<StationBoard> stationBoardEntries = GetStationBoardEntries(stationName, stationId);
+            List<StationBoard> stationBoardEntries = GetStationBoardEntries(stationName, stationId, datetime);
 
             var stationBoardList = from stationBoardEntry in stationBoardEntries
                                    select new
@@ -76,6 +112,7 @@ namespace ÖV_App_GUI
 
             dataGridConnection.DataSource = stationBoardList.ToList();
         }
+
 
         private Stations getStation(string input)
         {
@@ -151,7 +188,6 @@ namespace ÖV_App_GUI
                     if (e.KeyCode == Keys.Enter)
                     {
                         lstStartDestinations.Focus();
-                        //you might need to select one value to allow arrow keys
                         lstStartDestinations.SelectedIndex = 0;
                     }
                     if (lstStartDestinations.SelectedIndex != (lstStartDestinations.Items.Count - 1))
@@ -201,6 +237,33 @@ namespace ÖV_App_GUI
                         }
                     }
                 }
+            }
+        }
+
+        private void btnSwitchStation_Click(object sender, EventArgs e)
+        {
+            if (txtStartStation.Text == txtEndStation.Text)
+            {
+                MessageBox.Show("Der Ort ist gleich.");
+            }
+            if (String.IsNullOrEmpty(txtStartStation.Text) )
+            {
+                MessageBox.Show("Das Vor-feld ist leer. Bitte geben Sie einen Ort ein.");
+                txtStartStation.Focus();
+            }
+            if(String.IsNullOrEmpty(txtEndStation.Text))
+            {
+                MessageBox.Show("Das Nach-feld ist leer. Bitte geben Sie einen Ort ein.");
+                txtEndStation.Focus();
+            }
+            if(!String.IsNullOrEmpty(txtEndStation.Text) && !String.IsNullOrEmpty(txtStartStation.Text))
+            {
+                string startStation, endStation;
+                startStation = txtStartStation.Text;
+                endStation = txtEndStation.Text;
+                txtStartStation.Text = endStation;
+                txtEndStation.Text = startStation;
+                btnSearchConnection.Focus();
             }
         }
     }

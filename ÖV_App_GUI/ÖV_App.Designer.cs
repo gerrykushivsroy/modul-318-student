@@ -41,7 +41,10 @@
             this.lstStartDestinations = new System.Windows.Forms.ListBox();
             this.txtEndStation = new System.Windows.Forms.TextBox();
             this.lstEndDestinations = new System.Windows.Forms.ListBox();
+            this.btnSwitchStation = new System.Windows.Forms.Button();
             this.btnShowConnectionFromStart = new System.Windows.Forms.Button();
+            this.btnShowConnectionFromEndStation = new System.Windows.Forms.Button();
+            this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +61,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(317, 9);
+            this.label2.Location = new System.Drawing.Point(331, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 4;
@@ -66,13 +69,15 @@
             // 
             // btnSearchConnection
             // 
+            this.btnSearchConnection.BackColor = System.Drawing.Color.Red;
             this.btnSearchConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchConnection.Location = new System.Drawing.Point(462, 104);
+            this.btnSearchConnection.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearchConnection.Location = new System.Drawing.Point(460, 84);
             this.btnSearchConnection.Name = "btnSearchConnection";
-            this.btnSearchConnection.Size = new System.Drawing.Size(138, 55);
-            this.btnSearchConnection.TabIndex = 6;
+            this.btnSearchConnection.Size = new System.Drawing.Size(140, 55);
+            this.btnSearchConnection.TabIndex = 8;
             this.btnSearchConnection.Text = "Verbindung suchen";
-            this.btnSearchConnection.UseVisualStyleBackColor = true;
+            this.btnSearchConnection.UseVisualStyleBackColor = false;
             this.btnSearchConnection.Click += new System.EventHandler(this.btnSearchConnection_Click);
             // 
             // dataGridConnection
@@ -83,17 +88,18 @@
             this.dataGridConnection.AllowUserToResizeColumns = false;
             this.dataGridConnection.AllowUserToResizeRows = false;
             this.dataGridConnection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridConnection.BackgroundColor = System.Drawing.Color.White;
             this.dataGridConnection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridConnection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Departure,
             this.From,
             this.To,
             this.Duration});
-            this.dataGridConnection.Location = new System.Drawing.Point(22, 180);
+            this.dataGridConnection.Location = new System.Drawing.Point(22, 156);
             this.dataGridConnection.Name = "dataGridConnection";
             this.dataGridConnection.RowHeadersVisible = false;
             this.dataGridConnection.Size = new System.Drawing.Size(578, 307);
-            this.dataGridConnection.TabIndex = 6;
+            this.dataGridConnection.TabIndex = 10;
             // 
             // Departure
             // 
@@ -131,45 +137,84 @@
             this.lstStartDestinations.Location = new System.Drawing.Point(22, 44);
             this.lstStartDestinations.Name = "lstStartDestinations";
             this.lstStartDestinations.Size = new System.Drawing.Size(175, 95);
-            this.lstStartDestinations.TabIndex = 8;
+            this.lstStartDestinations.TabIndex = 11;
             this.lstStartDestinations.Visible = false;
             this.lstStartDestinations.Enter += new System.EventHandler(this.lstDestinations_Enter);
             // 
             // txtEndStation
             // 
-            this.txtEndStation.Location = new System.Drawing.Point(320, 25);
+            this.txtEndStation.Location = new System.Drawing.Point(334, 27);
             this.txtEndStation.Name = "txtEndStation";
             this.txtEndStation.Size = new System.Drawing.Size(175, 20);
             this.txtEndStation.TabIndex = 5;
             this.txtEndStation.TextChanged += new System.EventHandler(this.txtEndStation_TextChanged);
+            this.txtEndStation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEndStation_KeyDown);
             this.txtEndStation.Leave += new System.EventHandler(this.txtEndStation_Leave);
             // 
             // lstEndDestinations
             // 
             this.lstEndDestinations.FormattingEnabled = true;
-            this.lstEndDestinations.Location = new System.Drawing.Point(320, 44);
+            this.lstEndDestinations.Location = new System.Drawing.Point(334, 44);
             this.lstEndDestinations.Name = "lstEndDestinations";
             this.lstEndDestinations.Size = new System.Drawing.Size(175, 95);
-            this.lstEndDestinations.TabIndex = 10;
+            this.lstEndDestinations.TabIndex = 12;
             this.lstEndDestinations.Visible = false;
             this.lstEndDestinations.Enter += new System.EventHandler(this.lstEndDestinations_Enter);
             // 
+            // btnSwitchStation
+            // 
+            this.btnSwitchStation.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download1;
+            this.btnSwitchStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSwitchStation.Location = new System.Drawing.Point(270, 25);
+            this.btnSwitchStation.Name = "btnSwitchStation";
+            this.btnSwitchStation.Size = new System.Drawing.Size(41, 42);
+            this.btnSwitchStation.TabIndex = 9;
+            this.btnSwitchStation.UseVisualStyleBackColor = true;
+            this.btnSwitchStation.Click += new System.EventHandler(this.btnSwitchStation_Click);
+            // 
             // btnShowConnectionFromStart
             // 
+            this.btnShowConnectionFromStart.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download;
+            this.btnShowConnectionFromStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnShowConnectionFromStart.Location = new System.Drawing.Point(203, 25);
             this.btnShowConnectionFromStart.Name = "btnShowConnectionFromStart";
-            this.btnShowConnectionFromStart.Size = new System.Drawing.Size(81, 37);
+            this.btnShowConnectionFromStart.Size = new System.Drawing.Size(48, 42);
             this.btnShowConnectionFromStart.TabIndex = 3;
-            this.btnShowConnectionFromStart.Text = "Verbindung anzeigen";
             this.btnShowConnectionFromStart.UseVisualStyleBackColor = true;
             this.btnShowConnectionFromStart.Click += new System.EventHandler(this.btnShowConnectionFromStart_Click);
+            // 
+            // btnShowConnectionFromEndStation
+            // 
+            this.btnShowConnectionFromEndStation.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download;
+            this.btnShowConnectionFromEndStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShowConnectionFromEndStation.Location = new System.Drawing.Point(515, 25);
+            this.btnShowConnectionFromEndStation.Name = "btnShowConnectionFromEndStation";
+            this.btnShowConnectionFromEndStation.Size = new System.Drawing.Size(48, 42);
+            this.btnShowConnectionFromEndStation.TabIndex = 6;
+            this.btnShowConnectionFromEndStation.UseVisualStyleBackColor = true;
+            this.btnShowConnectionFromEndStation.Click += new System.EventHandler(this.btnShowConnectionFromEndStation_Click);
+            // 
+            // dateTimeDeparture
+            // 
+            this.dateTimeDeparture.CustomFormat = "HH:mm";
+            this.dateTimeDeparture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeDeparture.Location = new System.Drawing.Point(203, 84);
+            this.dateTimeDeparture.Name = "dateTimeDeparture";
+            this.dateTimeDeparture.Size = new System.Drawing.Size(63, 20);
+            this.dateTimeDeparture.TabIndex = 7;
+            this.dateTimeDeparture.Value = new System.DateTime(2018, 12, 3, 14, 43, 22, 0);
             // 
             // ÖV_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(627, 507);
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(627, 486);
+            this.Controls.Add(this.dateTimeDeparture);
+            this.Controls.Add(this.btnShowConnectionFromEndStation);
+            this.Controls.Add(this.btnSwitchStation);
             this.Controls.Add(this.btnShowConnectionFromStart);
             this.Controls.Add(this.lstEndDestinations);
             this.Controls.Add(this.txtEndStation);
@@ -181,7 +226,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ÖV_App";
-            this.Text = "ÖV App V2";
+            this.Text = "ÖV App ";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -203,6 +248,9 @@
         private System.Windows.Forms.TextBox txtEndStation;
         private System.Windows.Forms.ListBox lstEndDestinations;
         private System.Windows.Forms.Button btnShowConnectionFromStart;
+        private System.Windows.Forms.Button btnSwitchStation;
+        private System.Windows.Forms.Button btnShowConnectionFromEndStation;
+        private System.Windows.Forms.DateTimePicker dateTimeDeparture;
     }
 }
 
