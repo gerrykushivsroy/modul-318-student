@@ -33,11 +33,11 @@ namespace ÖV_App_GUI
                 foreach (Connection connection in railwayConnection)
                 {
                     string duration = connection.Duration.Substring(6, 2);
-                    dataGridConnection.Rows.Add(connection.From.Departure, connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes" );
+                    dataGridConnection.Rows.Add(connection.From.Departure, connection.From.Station.Name, connection.To.Station.Name, duration + " Minutes");
                 }
             }
         }
-        
+
         private void btnShowConnectionFromStart_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEndStation.Text))
@@ -77,16 +77,10 @@ namespace ÖV_App_GUI
             dataGridConnection.DataSource = stationBoardList.ToList();
         }
 
-        public Stations getStation(string input)
+        private Stations getStation(string input)
         {
             Stations stationList = transport.GetStations(input);
             return stationList;
-        }
-
-        public Connections getConnection(string fromStation, string toStattion)
-        {
-            Connections connectionList = transport.GetConnections(fromStation, toStattion);
-            return connectionList;
         }
         private void txtStartStation_TextChanged(object sender, EventArgs e)
         {
@@ -154,11 +148,19 @@ namespace ÖV_App_GUI
             {
                 if (lstStartDestinations.Items.Count != 0)
                 {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        lstStartDestinations.Focus();
+                        //you might need to select one value to allow arrow keys
+                        lstStartDestinations.SelectedIndex = 0;
+                    }
                     if (lstStartDestinations.SelectedIndex != (lstStartDestinations.Items.Count - 1))
                     {
                         if (e.KeyCode == Keys.Down)
                         {
                             lstStartDestinations.SelectedIndex++;
+
+
                         }
                     }
                     if (lstStartDestinations.SelectedIndex != 0)
@@ -166,14 +168,42 @@ namespace ÖV_App_GUI
                         if (e.KeyCode == Keys.Up)
                         {
                             lstStartDestinations.SelectedIndex--;
+
                         }
                     }
                 }
             }
         }
 
-
+        private void txtEndStation_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtEndStation.Focused)
+            {
+                if (lstEndDestinations.Items.Count != 0)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        lstEndDestinations.Focus();
+                        lstEndDestinations.SelectedIndex = 0;
+                    }
+                    if (lstEndDestinations.SelectedIndex != (lstEndDestinations.Items.Count - 1))
+                    {
+                        if (e.KeyCode == Keys.Down)
+                        {
+                            lstEndDestinations.SelectedIndex++;
+                        }
+                    }
+                    if (lstEndDestinations.SelectedIndex != 0)
+                    {
+                        if (e.KeyCode == Keys.Up)
+                        {
+                            lstEndDestinations.SelectedIndex--;
+                        }
+                    }
+                }
+            }
+        }
     }
-}
 
+}
 

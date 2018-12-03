@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ÖV_App));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchConnection = new System.Windows.Forms.Button();
@@ -46,8 +47,8 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 30);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(19, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 28);
             this.label1.TabIndex = 1;
@@ -56,17 +57,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(316, 30);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(317, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 20);
+            this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "&Nach:";
             // 
             // btnSearchConnection
             // 
             this.btnSearchConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchConnection.Location = new System.Drawing.Point(462, 145);
+            this.btnSearchConnection.Location = new System.Drawing.Point(462, 104);
             this.btnSearchConnection.Name = "btnSearchConnection";
             this.btnSearchConnection.Size = new System.Drawing.Size(138, 55);
             this.btnSearchConnection.TabIndex = 6;
@@ -88,7 +89,7 @@
             this.From,
             this.To,
             this.Duration});
-            this.dataGridConnection.Location = new System.Drawing.Point(22, 238);
+            this.dataGridConnection.Location = new System.Drawing.Point(22, 180);
             this.dataGridConnection.Name = "dataGridConnection";
             this.dataGridConnection.RowHeadersVisible = false;
             this.dataGridConnection.Size = new System.Drawing.Size(578, 307);
@@ -116,7 +117,7 @@
             // 
             // txtStartStation
             // 
-            this.txtStartStation.Location = new System.Drawing.Point(22, 61);
+            this.txtStartStation.Location = new System.Drawing.Point(22, 25);
             this.txtStartStation.Name = "txtStartStation";
             this.txtStartStation.Size = new System.Drawing.Size(175, 20);
             this.txtStartStation.TabIndex = 2;
@@ -127,7 +128,7 @@
             // lstStartDestinations
             // 
             this.lstStartDestinations.FormattingEnabled = true;
-            this.lstStartDestinations.Location = new System.Drawing.Point(22, 79);
+            this.lstStartDestinations.Location = new System.Drawing.Point(22, 44);
             this.lstStartDestinations.Name = "lstStartDestinations";
             this.lstStartDestinations.Size = new System.Drawing.Size(175, 95);
             this.lstStartDestinations.TabIndex = 8;
@@ -136,7 +137,7 @@
             // 
             // txtEndStation
             // 
-            this.txtEndStation.Location = new System.Drawing.Point(320, 61);
+            this.txtEndStation.Location = new System.Drawing.Point(320, 25);
             this.txtEndStation.Name = "txtEndStation";
             this.txtEndStation.Size = new System.Drawing.Size(175, 20);
             this.txtEndStation.TabIndex = 5;
@@ -146,7 +147,7 @@
             // lstEndDestinations
             // 
             this.lstEndDestinations.FormattingEnabled = true;
-            this.lstEndDestinations.Location = new System.Drawing.Point(320, 79);
+            this.lstEndDestinations.Location = new System.Drawing.Point(320, 44);
             this.lstEndDestinations.Name = "lstEndDestinations";
             this.lstEndDestinations.Size = new System.Drawing.Size(175, 95);
             this.lstEndDestinations.TabIndex = 10;
@@ -155,7 +156,7 @@
             // 
             // btnShowConnectionFromStart
             // 
-            this.btnShowConnectionFromStart.Location = new System.Drawing.Point(203, 61);
+            this.btnShowConnectionFromStart.Location = new System.Drawing.Point(203, 25);
             this.btnShowConnectionFromStart.Name = "btnShowConnectionFromStart";
             this.btnShowConnectionFromStart.Size = new System.Drawing.Size(81, 37);
             this.btnShowConnectionFromStart.TabIndex = 3;
@@ -168,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(648, 600);
+            this.ClientSize = new System.Drawing.Size(627, 507);
             this.Controls.Add(this.btnShowConnectionFromStart);
             this.Controls.Add(this.lstEndDestinations);
             this.Controls.Add(this.txtEndStation);
@@ -178,6 +179,7 @@
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ÖV_App";
             this.Text = "ÖV App V2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).EndInit();
