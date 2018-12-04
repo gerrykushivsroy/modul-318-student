@@ -114,7 +114,7 @@ namespace ÖV_App_GUI
 
         private void setSearchButtonActive()
         {
-            if(!String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
+            if (!String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
             {
                 btnSearchConnection.Enabled = true;
             }
@@ -234,8 +234,6 @@ namespace ÖV_App_GUI
                 btnSearchConnection.Focus();
             }
         }
-
-
     }
 
 }
