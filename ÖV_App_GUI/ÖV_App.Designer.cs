@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchConnection = new System.Windows.Forms.Button();
-            this.dataGridConnection = new System.Windows.Forms.DataGridView();
+            this.dtGridConnection = new System.Windows.Forms.DataGridView();
             this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +49,7 @@
             this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridConnection)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,29 +84,29 @@
             this.btnSearchConnection.UseVisualStyleBackColor = false;
             this.btnSearchConnection.Click += new System.EventHandler(this.btnSearchConnection_Click);
             // 
-            // dataGridConnection
+            // dtGridConnection
             // 
-            this.dataGridConnection.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.dataGridConnection.AllowUserToAddRows = false;
-            this.dataGridConnection.AllowUserToDeleteRows = false;
-            this.dataGridConnection.AllowUserToResizeColumns = false;
-            this.dataGridConnection.AllowUserToResizeRows = false;
-            this.dataGridConnection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridConnection.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridConnection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridConnection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtGridConnection.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.dtGridConnection.AllowUserToAddRows = false;
+            this.dtGridConnection.AllowUserToDeleteRows = false;
+            this.dtGridConnection.AllowUserToResizeColumns = false;
+            this.dtGridConnection.AllowUserToResizeRows = false;
+            this.dtGridConnection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtGridConnection.BackgroundColor = System.Drawing.Color.White;
+            this.dtGridConnection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGridConnection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Datum,
             this.Departure,
             this.From,
             this.To,
             this.Gleisnummer,
             this.Duration});
-            this.dataGridConnection.Location = new System.Drawing.Point(22, 248);
-            this.dataGridConnection.Name = "dataGridConnection";
-            this.dataGridConnection.ReadOnly = true;
-            this.dataGridConnection.RowHeadersVisible = false;
-            this.dataGridConnection.Size = new System.Drawing.Size(688, 308);
-            this.dataGridConnection.TabIndex = 10;
+            this.dtGridConnection.Location = new System.Drawing.Point(22, 248);
+            this.dtGridConnection.Name = "dtGridConnection";
+            this.dtGridConnection.ReadOnly = true;
+            this.dtGridConnection.RowHeadersVisible = false;
+            this.dtGridConnection.Size = new System.Drawing.Size(688, 308);
+            this.dtGridConnection.TabIndex = 10;
             // 
             // Datum
             // 
@@ -188,7 +188,6 @@
             // 
             this.btnSwitchStation.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download1;
             this.btnSwitchStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSwitchStation.Enabled = false;
             this.btnSwitchStation.Location = new System.Drawing.Point(352, 73);
             this.btnSwitchStation.Name = "btnSwitchStation";
             this.btnSwitchStation.Size = new System.Drawing.Size(36, 38);
@@ -265,7 +264,7 @@
             this.Controls.Add(this.txtEndStation);
             this.Controls.Add(this.lstStartDestinations);
             this.Controls.Add(this.txtStartStation);
-            this.Controls.Add(this.dataGridConnection);
+            this.Controls.Add(this.dtGridConnection);
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -278,7 +277,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ÖV_App";
             this.Text = "ÖV App ";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridConnection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridConnection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,7 +288,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearchConnection;
-        private System.Windows.Forms.DataGridView dataGridConnection;
+        private System.Windows.Forms.DataGridView dtGridConnection;
         private System.Windows.Forms.TextBox txtStartStation;
         private System.Windows.Forms.ListBox lstStartDestinations;
         private System.Windows.Forms.TextBox txtEndStation;

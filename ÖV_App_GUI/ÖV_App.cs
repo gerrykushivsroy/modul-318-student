@@ -25,9 +25,9 @@ namespace ÖV_App_GUI
             List<StationBoard> stationConnection = new List<StationBoard>();
             List<Connection> railwayConnection = new List<Connection>();
 
-            if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
+            if (dtGridConnection.Rows.Count != 0 && dtGridConnection.Rows != null)
             {
-                dataGridConnection.Rows.Clear();
+                dtGridConnection.Rows.Clear();
             }
             if (!string.IsNullOrEmpty(txtStartStation.Text) && !string.IsNullOrEmpty(txtEndStation.Text))
             {
@@ -36,7 +36,7 @@ namespace ÖV_App_GUI
                 foreach (Connection connection in railwayConnection)
                 {
                     string duration = connection.Duration.Substring(6, 2);
-                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortDateString(), Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, connection.From.Platform, duration + " Minuten");
+                    dtGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortDateString(), Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, connection.From.Platform, duration + " Minuten");
                 }
             }
         }
@@ -55,15 +55,15 @@ namespace ÖV_App_GUI
             try
             {
                 List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
-                if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
+                if (dtGridConnection.Rows.Count != 0 && dtGridConnection.Rows != null)
                 {
-                    dataGridConnection.Rows.Clear();
+                    dtGridConnection.Rows.Clear();
                 }
                 foreach (StationBoard station in stationBoardEntries)
                 {
                     string departureStation = textbox.Text;
                     string empty = "/";
-                    dataGridConnection.Rows.Add(Convert.ToDateTime(station.Stop.Departure).ToShortDateString(), Convert.ToDateTime(station.Stop.Departure).ToShortTimeString(), departureStation, station.To, empty, empty, empty);
+                    dtGridConnection.Rows.Add(Convert.ToDateTime(station.Stop.Departure).ToShortDateString(), Convert.ToDateTime(station.Stop.Departure).ToShortTimeString(), departureStation, station.To, empty, empty, empty);
                 }
             }
             catch (NullReferenceException)
@@ -95,7 +95,7 @@ namespace ÖV_App_GUI
                                        to = stationBoardEntry.To
                                    };
 
-            dataGridConnection.DataSource = stationBoardList.ToList();
+            dtGridConnection.DataSource = stationBoardList.ToList();
         }
 
         private Stations getStation(string input)
@@ -208,11 +208,11 @@ namespace ÖV_App_GUI
         {
             if (txtStartStation.Text == txtEndStation.Text && String.IsNullOrEmpty(txtStartStation.Text) && String.IsNullOrEmpty(txtEndStation.Text))
             {
-                MessageBox.Show("Die beiden Felder sind leer");
+                MessageBox.Show("Die beiden Felder sind leer. Bitte geben führen Sie eine Eingabe aus.");
             }
             if (txtStartStation.Text == txtEndStation.Text && !String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
             {
-                MessageBox.Show("Die beiden Felder sind gleich.");
+                MessageBox.Show("Die beiden Felder sind gleich. Bitte ändern Sie Ihre Eingabe.");
             }
             if (String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
             {
