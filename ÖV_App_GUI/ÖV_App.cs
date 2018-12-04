@@ -68,7 +68,7 @@ namespace ÖV_App_GUI
                 {
                     string departureStation = textbox.Text;
                     string empty = "/";
-                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To, empty, empty);
+                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To, station, empty);
                 }
             }
         }
