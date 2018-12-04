@@ -62,7 +62,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(331, 9);
+            this.label2.Location = new System.Drawing.Point(368, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 16);
             this.label2.TabIndex = 4;
@@ -156,7 +156,7 @@
             // 
             // txtEndStation
             // 
-            this.txtEndStation.Location = new System.Drawing.Point(334, 27);
+            this.txtEndStation.Location = new System.Drawing.Point(371, 25);
             this.txtEndStation.Name = "txtEndStation";
             this.txtEndStation.Size = new System.Drawing.Size(175, 20);
             this.txtEndStation.TabIndex = 5;
@@ -167,7 +167,7 @@
             // lstEndDestinations
             // 
             this.lstEndDestinations.FormattingEnabled = true;
-            this.lstEndDestinations.Location = new System.Drawing.Point(334, 44);
+            this.lstEndDestinations.Location = new System.Drawing.Point(371, 44);
             this.lstEndDestinations.Name = "lstEndDestinations";
             this.lstEndDestinations.Size = new System.Drawing.Size(175, 95);
             this.lstEndDestinations.TabIndex = 12;
@@ -178,7 +178,7 @@
             // 
             this.btnSwitchStation.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download1;
             this.btnSwitchStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSwitchStation.Location = new System.Drawing.Point(270, 25);
+            this.btnSwitchStation.Location = new System.Drawing.Point(284, 25);
             this.btnSwitchStation.Name = "btnSwitchStation";
             this.btnSwitchStation.Size = new System.Drawing.Size(41, 42);
             this.btnSwitchStation.TabIndex = 9;
@@ -200,7 +200,7 @@
             // 
             this.btnShowConnectionFromEndStation.BackgroundImage = global::ÖV_App_GUI.Properties.Resources.Download;
             this.btnShowConnectionFromEndStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnShowConnectionFromEndStation.Location = new System.Drawing.Point(515, 25);
+            this.btnShowConnectionFromEndStation.Location = new System.Drawing.Point(552, 25);
             this.btnShowConnectionFromEndStation.Name = "btnShowConnectionFromEndStation";
             this.btnShowConnectionFromEndStation.Size = new System.Drawing.Size(48, 42);
             this.btnShowConnectionFromEndStation.TabIndex = 6;
@@ -211,7 +211,7 @@
             // 
             this.dateTimeDeparture.CustomFormat = "HH:mm";
             this.dateTimeDeparture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeDeparture.Location = new System.Drawing.Point(203, 84);
+            this.dateTimeDeparture.Location = new System.Drawing.Point(203, 73);
             this.dateTimeDeparture.Name = "dateTimeDeparture";
             this.dateTimeDeparture.Size = new System.Drawing.Size(63, 20);
             this.dateTimeDeparture.TabIndex = 7;
