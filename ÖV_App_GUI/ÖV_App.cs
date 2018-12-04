@@ -36,7 +36,7 @@ namespace ÖV_App_GUI
                 foreach (Connection connection in railwayConnection)
                 {
                     string duration = connection.Duration.Substring(6, 2);
-                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, connection.To.Platform, duration + " Minuten");
+                    dataGridConnection.Rows.Add(Convert.ToDateTime(connection.From.Departure).ToShortDateString(), Convert.ToDateTime(connection.From.Departure).ToShortTimeString(), connection.From.Station.Name, connection.To.Station.Name, connection.From.Platform, duration + " Minuten");
                 }
             }
         }
@@ -52,14 +52,9 @@ namespace ÖV_App_GUI
         private void ShowSationboard(TextBox textbox)
         {
             string time = dateTimeDeparture.Value.ToString("HH:mm");
-            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
-            if (textbox.Text == "")
+            try
             {
-                MessageBox.Show("Es wurde kein Abfahrtsort gewählt!");
-                textbox.Focus();
-            }
-            else
-            {
+                List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
                 if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
                 {
                     dataGridConnection.Rows.Clear();
@@ -68,10 +63,15 @@ namespace ÖV_App_GUI
                 {
                     string departureStation = textbox.Text;
                     string empty = "/";
-                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To, station, empty);
+                    dataGridConnection.Rows.Add(Convert.ToDateTime(station.Stop.Departure).ToShortDateString(), Convert.ToDateTime(station.Stop.Departure).ToShortTimeString(), departureStation, station.To, empty, empty, empty);
                 }
             }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Es wurde keine Station gewählt!");
+            }
         }
+
         private List<StationBoard> GetStationBoardEntries(string station, string id, string datetime)
         {
             bool stationAndIdNotNullOrWhiteSpaces =
@@ -112,6 +112,13 @@ namespace ÖV_App_GUI
             Textbox_TextChanged(txtEndStation, lstEndDestinations);
         }
 
+        private void setSearchButtonActive()
+        {
+            if(!String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
+            {
+                btnSearchConnection.Enabled = true;
+            }
+        }
         private void Textbox_TextChanged(TextBox textbox, ListBox lstBox)
         {
             lstBox.DisplayMember = "Name";
@@ -130,6 +137,7 @@ namespace ÖV_App_GUI
                 lstBox.Visible = false;
             }
             textbox.Focus();
+            setSearchButtonActive();
         }
         private void lstDestinations_Enter(object sender, EventArgs e)
         {
@@ -198,16 +206,20 @@ namespace ÖV_App_GUI
 
         private void btnSwitchStation_Click(object sender, EventArgs e)
         {
-            if (txtStartStation.Text == txtEndStation.Text)
+            if (txtStartStation.Text == txtEndStation.Text && String.IsNullOrEmpty(txtStartStation.Text) && String.IsNullOrEmpty(txtEndStation.Text))
             {
-                MessageBox.Show("Der Ort ist gleich.");
+                MessageBox.Show("Die beiden Felder sind leer");
             }
-            if (String.IsNullOrEmpty(txtStartStation.Text))
+            if (txtStartStation.Text == txtEndStation.Text && !String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
+            {
+                MessageBox.Show("Die beiden Felder sind gleich.");
+            }
+            if (String.IsNullOrEmpty(txtStartStation.Text) && !String.IsNullOrEmpty(txtEndStation.Text))
             {
                 MessageBox.Show("Das Vor-feld ist leer. Bitte geben Sie einen Ort ein.");
                 txtStartStation.Focus();
             }
-            if (String.IsNullOrEmpty(txtEndStation.Text))
+            if (String.IsNullOrEmpty(txtEndStation.Text) && !String.IsNullOrEmpty(txtStartStation.Text))
             {
                 MessageBox.Show("Das Nach-feld ist leer. Bitte geben Sie einen Ort ein.");
                 txtEndStation.Focus();
@@ -223,10 +235,7 @@ namespace ÖV_App_GUI
             }
         }
 
-        //         private void lstStartDestinations_Click(object sender, EventArgs e)
-        //         {
-        //             txtStartStation.Text = lstStartDestinations.Text;
-        //         }
+
     }
 
 }

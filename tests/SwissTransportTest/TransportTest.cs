@@ -45,15 +45,6 @@ namespace SwissTransport
 
             Assert.IsNotNull(stationBoard);
         }
-        [TestMethod]
-        public void StationBoardTest2()
-        {
-            testee = new Transport();
-            var stationBoard = testee.GetStationBoard("OPAODAOSD", "2032032323", "15:00");
-
-            Assert.Fail();
-        }
-
         /// <summary>
         /// Test der überprüft das resultConnections nicht NULL sein darf.
         /// </summary>
@@ -67,20 +58,5 @@ namespace SwissTransport
             //Assert
             Assert.IsNotNull(resultcConnections);
         }
-
-        /// <summary>
-        /// Test der überprüft das resultConnections fehlgeschlagen hat. 
-        /// </summary>
-        [TestMethod]
-        public void ConnectionTest2()
-        {
-            //Arrange
-            testee = new Transport();
-            //Act
-            var resultConnections = testee.GetConnections("Emmenbrücke", "232323131", "13:20");
-            //Assert
-            //Assert.;
-        }
-
     }
 }
