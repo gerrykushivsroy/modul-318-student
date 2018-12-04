@@ -24,7 +24,6 @@ namespace ÖV_App_GUI
         {
             List<StationBoard> stationConnection = new List<StationBoard>();
             List<Connection> railwayConnection = new List<Connection>();
-            
 
             if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
             {
@@ -44,34 +43,20 @@ namespace ÖV_App_GUI
 
         private void btnShowConnectionFromStart_Click(object sender, EventArgs e)
         {
-            string time = dateTimeDeparture.Value.ToString("HH:mm");
-            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
-            if (txtStartStation.Text == "")
-            {
-                MessageBox.Show("Es wurde kein Abfahrtsort gewählt!");
-                txtStartStation.Focus();
-            }
-            else
-            {
-                if (dataGridConnection.Rows.Count != 0 && dataGridConnection.Rows != null)
-                {
-                    dataGridConnection.Rows.Clear();
-                }
-                foreach (StationBoard station in stationBoardEntries)
-                {
-                    string departureStation = txtStartStation.Text;
-                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To);
-                }
-            }
+            ShowSationboard(txtStartStation);
         }
         private void btnShowConnectionFromEndStation_Click(object sender, EventArgs e)
         {
+            ShowSationboard(txtEndStation);
+        }
+        private void ShowSationboard(TextBox textbox)
+        {
             string time = dateTimeDeparture.Value.ToString("HH:mm");
-            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstEndDestinations.SelectedValue.ToString(), time);
-            if (txtEndStation.Text == "")
+            List<StationBoard> stationBoardEntries = GetStationBoardEntries(txtStartStation.Text, lstStartDestinations.SelectedValue.ToString(), time);
+            if (textbox.Text == "")
             {
                 MessageBox.Show("Es wurde kein Abfahrtsort gewählt!");
-                txtEndStation.Focus();
+                textbox.Focus();
             }
             else
             {
@@ -81,9 +66,9 @@ namespace ÖV_App_GUI
                 }
                 foreach (StationBoard station in stationBoardEntries)
                 {
-                    string departureStation = txtEndStation.Text;
-                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To);
-
+                    string departureStation = textbox.Text;
+                    string empty = "/";
+                    dataGridConnection.Rows.Add(station.Stop.Departure, departureStation, station.To, empty, empty);
                 }
             }
         }
@@ -106,13 +91,12 @@ namespace ÖV_App_GUI
             var stationBoardList = from stationBoardEntry in stationBoardEntries
                                    select new
                                    {
-                                       Abfahrtszeit = stationBoardEntry.Stop.Departure.ToShortTimeString(),
-                                       Nach = stationBoardEntry.To
+                                       departureTime = stationBoardEntry.Stop.Departure.ToShortTimeString(),
+                                       to = stationBoardEntry.To
                                    };
 
             dataGridConnection.DataSource = stationBoardList.ToList();
         }
-
 
         private Stations getStation(string input)
         {
@@ -121,52 +105,35 @@ namespace ÖV_App_GUI
         }
         private void txtStartStation_TextChanged(object sender, EventArgs e)
         {
-            lstStartDestinations.DisplayMember = "Name";
-            lstStartDestinations.ValueMember = "Id";
-
-            Stations toStations = getStation(txtStartStation.Text);
-
-            lstStartDestinations.DataSource = toStations.StationList;
-
-            if (!(String.IsNullOrWhiteSpace(txtStartStation.Text)))
-            {
-                lstStartDestinations.Visible = true;
-            }
-            else
-            {
-                  lstStartDestinations.Visible = false;
-            }
-            txtStartStation.Focus();
+            Textbox_TextChanged(txtStartStation, lstStartDestinations);
         }
         private void txtEndStation_TextChanged(object sender, EventArgs e)
         {
-            lstEndDestinations.DisplayMember = "Name";
-            lstEndDestinations.ValueMember = "Id";
+            Textbox_TextChanged(txtEndStation, lstEndDestinations);
+        }
 
-            Stations toStations = getStation(txtEndStation.Text);
+        private void Textbox_TextChanged(TextBox textbox, ListBox lstBox)
+        {
+            lstBox.DisplayMember = "Name";
+            lstBox.ValueMember = "Id";
 
-            lstEndDestinations.DataSource = toStations.StationList;
+            Stations toStations = getStation(textbox.Text);
 
-            if (!(String.IsNullOrWhiteSpace(txtEndStation.Text)))
+            lstBox.DataSource = toStations.StationList;
+
+            if (!(String.IsNullOrWhiteSpace(textbox.Text)))
             {
-                lstEndDestinations.Visible = true;
+                lstBox.Visible = true;
             }
             else
             {
-                lstEndDestinations.Visible = false;
+                lstBox.Visible = false;
             }
-            txtEndStation.Focus();
+            textbox.Focus();
         }
-
         private void lstDestinations_Enter(object sender, EventArgs e)
         {
             txtStartStation.Text = lstStartDestinations.Text;
-        }
-
-        private void txtStartStation_Leave(object sender, EventArgs e)
-        {
-            txtStartStation.Text = lstStartDestinations.Text;
-            lstStartDestinations.Visible = false;
         }
 
         private void lstEndDestinations_Enter(object sender, EventArgs e)
@@ -174,66 +141,55 @@ namespace ÖV_App_GUI
             txtEndStation.Text = lstEndDestinations.Text;
         }
 
+        private void txtStartStation_Leave(object sender, EventArgs e)
+        {
+            TextBox_Leave(txtStartStation, lstStartDestinations);
+        }
+
         private void txtEndStation_Leave(object sender, EventArgs e)
         {
-            txtEndStation.Text = lstEndDestinations.Text;
-            lstEndDestinations.Visible = false;
+            TextBox_Leave(txtEndStation, lstEndDestinations);
         }
+
+        private void TextBox_Leave(TextBox textbox, ListBox lstbox)
+        {
+            textbox.Text = lstbox.Text;
+            lstbox.Visible = false;
+        }
+
         private void txtStartStation_KeyDown(object sender, KeyEventArgs e)
         {
-            if (txtStartStation.Focused)
-            {
-                if (lstStartDestinations.Items.Count != 0)
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        lstStartDestinations.Focus();
-                        lstStartDestinations.SelectedIndex = 0;
-                    }
-                    if (lstStartDestinations.SelectedIndex != (lstStartDestinations.Items.Count - 1))
-                    {
-                        if (e.KeyCode == Keys.Down)
-                        {
-                            lstStartDestinations.SelectedIndex++;
-
-
-                        }
-                    }
-                    if (lstStartDestinations.SelectedIndex != 0)
-                    {
-                        if (e.KeyCode == Keys.Up)
-                        {
-                            lstStartDestinations.SelectedIndex--;
-
-                        }
-                    }
-                }
-            }
+            KeyDownEvent(txtStartStation, lstStartDestinations, e);
         }
 
         private void txtEndStation_KeyDown(object sender, KeyEventArgs e)
         {
-            if (txtEndStation.Focused)
+            KeyDownEvent(txtEndStation, lstEndDestinations, e);
+        }
+
+        private void KeyDownEvent(TextBox textbox, ListBox lstBox, KeyEventArgs e)
+        {
+            if (textbox.Focused)
             {
-                if (lstEndDestinations.Items.Count != 0)
+                if (lstBox.Items.Count != 0)
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        lstEndDestinations.Focus();
-                        lstEndDestinations.SelectedIndex = 0;
+                        lstBox.Focus();
+                        lstBox.SelectedIndex = 0;
                     }
-                    if (lstEndDestinations.SelectedIndex != (lstEndDestinations.Items.Count - 1))
+                    if (lstBox.SelectedIndex != (lstBox.Items.Count - 1))
                     {
                         if (e.KeyCode == Keys.Down)
                         {
-                            lstEndDestinations.SelectedIndex++;
+                            lstBox.SelectedIndex++;
                         }
                     }
-                    if (lstEndDestinations.SelectedIndex != 0)
+                    if (lstBox.SelectedIndex != 0)
                     {
                         if (e.KeyCode == Keys.Up)
                         {
-                            lstEndDestinations.SelectedIndex--;
+                            lstBox.SelectedIndex--;
                         }
                     }
                 }
@@ -246,17 +202,17 @@ namespace ÖV_App_GUI
             {
                 MessageBox.Show("Der Ort ist gleich.");
             }
-            if (String.IsNullOrEmpty(txtStartStation.Text) )
+            if (String.IsNullOrEmpty(txtStartStation.Text))
             {
                 MessageBox.Show("Das Vor-feld ist leer. Bitte geben Sie einen Ort ein.");
                 txtStartStation.Focus();
             }
-            if(String.IsNullOrEmpty(txtEndStation.Text))
+            if (String.IsNullOrEmpty(txtEndStation.Text))
             {
                 MessageBox.Show("Das Nach-feld ist leer. Bitte geben Sie einen Ort ein.");
                 txtEndStation.Focus();
             }
-            if(!String.IsNullOrEmpty(txtEndStation.Text) && !String.IsNullOrEmpty(txtStartStation.Text))
+            if (!String.IsNullOrEmpty(txtEndStation.Text) && !String.IsNullOrEmpty(txtStartStation.Text))
             {
                 string startStation, endStation;
                 startStation = txtStartStation.Text;
@@ -267,10 +223,10 @@ namespace ÖV_App_GUI
             }
         }
 
-        private void lstStartDestinations_Click(object sender, EventArgs e)
-        {
-            txtStartStation.Text = lstStartDestinations.Text;
-        }
+        //         private void lstStartDestinations_Click(object sender, EventArgs e)
+        //         {
+        //             txtStartStation.Text = lstStartDestinations.Text;
+        //         }
     }
 
 }

@@ -152,7 +152,6 @@
             this.lstStartDestinations.Size = new System.Drawing.Size(175, 95);
             this.lstStartDestinations.TabIndex = 11;
             this.lstStartDestinations.Visible = false;
-            this.lstStartDestinations.Click += new System.EventHandler(this.lstStartDestinations_Click);
             this.lstStartDestinations.Enter += new System.EventHandler(this.lstDestinations_Enter);
             // 
             // txtEndStation
